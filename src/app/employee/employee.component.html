@@ -1,0 +1,36 @@
+<div class="cls-form">
+	<h2>{{status}}</h2>
+	<form [formGroup]="frmEmp" (ngSubmit) ="onSubmit()">
+		Name: <input name ="name" placeholder="Name" formControlName="name"><span [hidden] = "frmEmp.controls['name'].valid">**</span><br>
+		Salary: <input name ="salary" placeholder="Salary" formControlName="salary"><br>
+		Age: <input name ="age" placeholder="Age" formControlName="age"><br>
+
+		<button (click)="addAddress($event)">Add Address</button>
+		<div formArrayName = "address">
+			<div *ngFor="let item of address.controls; let addIndex=index" [formGroupName]="addIndex">
+				Address {{addIndex+1}}: <input formControlName="add1">
+			</div>
+		</div>
+		<input type="submit" value="submit">
+	</form>
+
+
+	<table border="1" class="div-center">
+		<thead>
+			<tr>
+				<td>Sr. No.</td> 
+				<td>Employee Name</td>
+				<td>Employee Salary</td>
+				<td>Employee Age</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let e of employees; let i = index">
+				<td>{{i+1}}</td>
+				<td>{{e.employee_name}}</td>
+				<td>{{e.employee_salary | currency: ''}}</td>
+				<td>{{e.employee_age | number: '3.2-2'}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,46 @@
+<div class="div-center">
+	<button (click)="toggle()"> Toggle</button>
+	<br>
+	<div *ngIf="flag" style="background-color: teal">
+		This div wil be dynamically added and removed
+	</div>
+	<hr>
+	<p appMoveChange>
+		{{'The Font color and font size will be changed.' | trim2length: 12}}
+	</p>
+
+	<hr>
+	<p>
+		{{products | json}}
+	</p>
+	Select Country : <select (change)="handleChange($event)">
+		<option value="in">India</option>
+		<option value="us">US</option>
+		<option value="ch">China</option>
+	</select>
+
+	<table border="1" class="div-center" [ngClass]="{'cls-in':country=='in','cls-us':country=='us','cls-ch':country=='ch'}">
+		<thead>
+			<tr>
+				<td>Sr. No.</td> 
+				<td>Product Id</td>
+				<td>Product Name</td>
+				<td>Product Price</td>
+				<td>Date</td>
+				<td>Link</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let p of products; let i = index">
+				<td>{{i+1}}</td>
+				<td>{{p.pid}}</td>
+				<td>{{p.pname | trim2length: 10}}</td>
+				<td>{{p.pprice | number: '3.2-2'}}</td>
+				<td>{{p.date1 | date: 'dd/MMM/yyyy'}}</td>
+				<td><a [routerLink]="['details', p.pid]" [queryParams]="{flag:(i%2==0)}"> Details</a>  </td>
+				<td><button (click)="onClick(p.pid,i%2==0)">Details</button> </td>
+			</tr>
+		</tbody>
+	</table>
+	<router-outlet></router-outlet>
+</div>

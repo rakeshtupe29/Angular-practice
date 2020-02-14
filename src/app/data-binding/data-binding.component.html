@@ -1,0 +1,22 @@
+<style>
+	.outer-div{
+		text-align: center;
+	}
+</style>
+
+<div class="outer-div">
+	<h4>{{compTitle}}</h4>
+	<p>this shows binding</p>
+	<input [(ngModel)]= "txtDesc" />
+	<span>{{txtDesc}}</span>
+	<button (mouseover)="handleClick()">Toggle</button>
+	<div [hidden]="flagDiv" >My Message</div>
+
+	<p>value received from child : {{countInParent}}</p>
+
+	<hr>
+	<app-data-binding-child [descChild]="txtDesc" (changeCount)="getCount($event)">
+
+	</app-data-binding-child>
+
+</div>

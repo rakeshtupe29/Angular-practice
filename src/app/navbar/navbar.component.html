@@ -1,0 +1,21 @@
+
+<style>
+	nav{
+		width: 100%;
+		min-height: 30px;
+		background-color: orange;
+		text-align: center;
+		margin: auto;
+	}
+	
+	nav > a {
+		color: blue;
+		margin: auto 5%
+	}
+</style>
+<nav>
+	<a [routerLink]="['home']"> Home </a>
+	<a [routerLink]="['about']"> About us </a>
+	<a [routerLink]="['contact']"> Contact us </a>
+	<a [routerLink]="['directive']"> Directive </a>
+</nav>
